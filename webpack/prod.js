@@ -30,11 +30,15 @@ module.exports = merge(base, {
    new CopyPlugin({ 
       patterns: [
          {
-             // every file inside src/assets folder
-             from: 'src/assets/',
-             to: 'assets/'
-            //  context: 'src/assets/'
-         }
+            // every file inside src/assets folder
+            from: 'src',
+            to: 'src'
+           },
+           {
+            from: 'assets/*',
+            to: 'assets/*',
+            context: 'src/'
+        }
       ]
       }),
    ],
