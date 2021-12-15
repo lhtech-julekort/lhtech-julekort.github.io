@@ -15,7 +15,7 @@ module.exports = merge(base, {
     maxEntrypointSize: 900000,
     maxAssetSize: 900000
   },
-  optimization: {
+  optimization: { 
     minimizer: [
       new TerserPlugin({
         terserOptions: {
@@ -27,21 +27,15 @@ module.exports = merge(base, {
     ]
  },
   plugins: [
-   // new CopyPlugin({ 
-   //    patterns: [
-   //       // { 
-   //       //     // src/index.html
-   //       //     from: 'index.html',
-   //       //     to: ''
-   //       //     context: 'src/'
-   //       // },
-   //       {
-   //           // every file inside src/assets folder
-   //           from: 'src/assets/',
-   //           to: 'assets/'
-   //          //  context: 'src/assets/'
-   //       }
-   //   ]
-   // }),
-],
+   new CopyPlugin({ 
+      patterns: [
+         {
+             // every file inside src/assets folder
+             from: 'src/assets/',
+             to: 'assets/'
+            //  context: 'src/assets/'
+         }
+      ]
+      }),
+   ],
 });

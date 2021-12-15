@@ -11,10 +11,7 @@ export default class GreetScene extends Phaser.Scene {
    }
 
    preload() {
-      //load billeder til showImgSequence
-      //føj billeder til array
       this.load.spritesheet('legoBtn-anim', legoBtn, {frameWidth: 216, frameHeight: 132});
-      // this.load.bitmapFont('gbfont', 'src/assets/fonts/gbfont.png', 'src/assets/fonts/gbfont.xml');
       this.load.bitmapFont('gbfont', fontPng, fontXml)
       this.load.image('logoTech', logo, {frameWidth: 400, frameHeight: 180})
    } 
@@ -48,7 +45,6 @@ export default class GreetScene extends Phaser.Scene {
 
    typewriteText(text) {
       this.label.setText(text);
-      // const bounds = this.label.getTextBounds(false);
       this.label.setText('');
 
       const length = text.length
@@ -72,6 +68,16 @@ export default class GreetScene extends Phaser.Scene {
             callback: () => {
                this.add.image(600, 300, imgKey).setScale(1.5)
             },
+         })
+      }
+
+      showButtonAndText() {
+         this.time.addEvent({
+            delay: 900,
+            callback: () => {
+               this.add.text(600, 550, 'Click the button to proceed')
+               this.add.sprite(600, 600, 'legoBtn-anim')
+            }
          })
       }
 
