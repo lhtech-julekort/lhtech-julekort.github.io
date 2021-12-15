@@ -1,4 +1,5 @@
 import Phaser from 'phaser'
+// import rikkeName from '../assets/rikkeName.png'
 
 
 export default class SceneTwo extends Phaser.Scene {
@@ -18,6 +19,7 @@ export default class SceneTwo extends Phaser.Scene {
          this.load.image('presents', 'src/assets/presents.png', {frameWidth: 84, frameHeight: 64})
          this.load.image('smallTree', 'src/assets/smallTree.png', {frameWidth: 90, frameHeight: 156})
          this.load.image('smallTreeII', 'src/assets/smallTreeII.png', {frameWidth: 90, frameHeight: 156})
+         this.load.image('rikkeName', 'src/assets/rikkeName.png')
          
          
          //ANIMATIONS
@@ -29,7 +31,7 @@ export default class SceneTwo extends Phaser.Scene {
          this.load.spritesheet('thea-ani', 'src/assets/Thea.png', {frameWidth: 78, frameHeight: 140})
          this.load.spritesheet('dion-ani', 'src/assets/DionII.png', {frameWidth: 69, frameHeight: 159})
          this.load.spritesheet('wine-chris', 'src/assets/ChristianWine.png', {frameWidth: 110, frameHeight: 150})
-         this.load.spritesheet('rikke', 'src/assets/rikkeGlassesHair.png', {frameWidth: 87, frameHeight: 69}) 
+         this.load.spritesheet('rikke', 'src/assets/rikkeGlassesHair.png', {frameWidth: 87, frameHeight: 75}) 
          
       }
 
@@ -42,10 +44,10 @@ export default class SceneTwo extends Phaser.Scene {
          this.add.image(0, 800, 'lowLeftBrick').setOrigin(0, 1)
          this.add.image(1050, 320, 'smallTree')    //right
          this.add.image(1010, 370, 'pc')           //right
-         this.rikke = this.add.sprite(200, 400, 'rikke')
-         this.rikke.setAngle(-40)
+         this.rikke = this.add.sprite(200, 380, 'rikke').setAngle(-40)
          this.add.image(250, 400, 'smallTreeII')   //left
          this.add.image(310, 440, 'presents')      //left
+         this.add.image(210, 455, 'rikkeName')
          
          
          //ANIMATIONS
@@ -99,14 +101,14 @@ export default class SceneTwo extends Phaser.Scene {
          this.anims.create({
             key: 'dion-ani',
             frames: this.anims.generateFrameNumbers('dion-ani', {start: 0, end: 3}),
-            frameRate: 2,
+            frameRate: 1.9,
             repeat: -1
          })
          
          this.anims.create({
             key: 'banner',
             frames: this.anims.generateFrameNumbers('banner', {start: 0, end: 1}),
-            frameRate: 2,
+            frameRate: 2.5,
             repeat: -1
          })
 
@@ -120,7 +122,7 @@ export default class SceneTwo extends Phaser.Scene {
          this.anims.create({ 
             key: 'rikke',
             frames: this.anims.generateFrameNumbers('rikke', {start: 0, end: 1}),
-            frameRate: 2,
+            frameRate: 2.5,
             repeat: -1
          })
 

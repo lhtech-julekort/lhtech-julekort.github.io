@@ -2,6 +2,7 @@ import Phaser from 'phaser'
 import legoBtn from '../assets/LegoBtnSprite.png'
 import fontPng from  '../assets/fonts/gbfont.png'
 import fontXml from '../assets/fonts/gbfont.xml'
+import logo from '../assets/logoTech.png'
 
 export default class GreetScene extends Phaser.Scene {
 
@@ -10,15 +11,17 @@ export default class GreetScene extends Phaser.Scene {
    }
 
    preload() {
+      //load billeder til showImgSequence
+      //føj billeder til array
       this.load.spritesheet('legoBtn-anim', legoBtn, {frameWidth: 216, frameHeight: 132});
       // this.load.bitmapFont('gbfont', 'src/assets/fonts/gbfont.png', 'src/assets/fonts/gbfont.xml');
       this.load.bitmapFont('gbfont', fontPng, fontXml)
-   }
-
+      this.load.image('logoTech', logo, {frameWidth: 400, frameHeight: 180})
+   } 
    create() {
-      this.label = this.add.bitmapText(200, 150, 'gbfont', '')
-      this.typewriteText('The following message is\nbrought to you by')
-      this.btn = this.add.sprite(600, 450, 'legoBtn-anim')
+      this.label = this.add.bitmapText(310, 100, 'gbfont', '', 24)
+      this.typewriteText('This message is brought to you by:')
+      this.btn = this.add.sprite(600, 600, 'legoBtn-anim')
       
       this.anims.create( {
          key: "legoBtn-anim",
@@ -38,7 +41,6 @@ export default class GreetScene extends Phaser.Scene {
       this.cameras.main.once(Phaser.Cameras.Scene2D.Events.FADE_OUT_COMPLETE, (cam, effect) => {
          this.scene.start('scene-two')
       })
-
    }
 
 
@@ -46,9 +48,7 @@ export default class GreetScene extends Phaser.Scene {
 
    typewriteText(text) {
       this.label.setText(text);
-
-      const bounds = this.label.getTextBounds(false);
-
+      // const bounds = this.label.getTextBounds(false);
       this.label.setText('');
 
       const length = text.length
@@ -57,9 +57,23 @@ export default class GreetScene extends Phaser.Scene {
          callback: () => {
             this.label.text += text[i]
             ++i
+            if(i >= length) {
+               this.showLogo('logoTech')
+            }
          },
          repeat: length -1,
-         delay: 100
+         delay: 80
       });
    }
+
+   showLogo(imgKey) {
+         this.time.addEvent({
+            delay: 900,
+            callback: () => {
+               this.add.image(600, 300, imgKey).setScale(1.5)
+            },
+         })
+      }
+
+   //showImage-metode her
 }

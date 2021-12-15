@@ -25,21 +25,23 @@ module.exports = merge(base, {
         }
       })
     ]
- }//,
-//   plugins: [
-//    new CopyPlugin({ 
-//       patterns: [
-//          { 
-//              // src/index.html
-//              from: 'index.html',
-//              context: 'src/'
-//          },
-//          {
-//              // every file inside src/assets folder
-//              from: 'assets/*',
-//              context: 'src/'
-//          }
-//      ]
-//    }),
-// ],
+ },
+  plugins: [
+   // new CopyPlugin({ 
+   //    patterns: [
+   //       // { 
+   //       //     // src/index.html
+   //       //     from: 'index.html',
+   //       //     to: ''
+   //       //     context: 'src/'
+   //       // },
+   //       {
+   //           // every file inside src/assets folder
+   //           from: 'src/assets/',
+   //           to: 'assets/'
+   //          //  context: 'src/assets/'
+   //       }
+   //   ]
+   // }),
+],
 });
