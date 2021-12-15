@@ -1,9 +1,4 @@
 import Phaser from 'phaser'
-import legoBtn from '../assets/LegoBtnSprite.png'
-import fontPng from  '../assets/fonts/gbfont.png'
-import fontXml from '../assets/fonts/gbfont.xml'
-import logo from '../assets/logoTech.png'
-
 export default class GreetScene extends Phaser.Scene {
 
    constructor() {
@@ -11,9 +6,9 @@ export default class GreetScene extends Phaser.Scene {
    }
 
    preload() {
-      this.load.spritesheet('legoBtn-anim', legoBtn, {frameWidth: 216, frameHeight: 132});
-      this.load.bitmapFont('gbfont', fontPng, fontXml)
-      this.load.image('logoTech', logo, {frameWidth: 400, frameHeight: 180})
+      this.load.spritesheet('legoBtn-anim', 'src/assets/LegoBtnSprite.png', {frameWidth: 216, frameHeight: 132});
+      this.load.bitmapFont('gbfont', 'src/assets/fonts/gbfont.png', 'src/assets/fonts/gbfont.xml')
+      this.load.image('logoTech', 'src/assets/logoTech.png', {frameWidth: 400, frameHeight: 180})
    } 
    create() {
       this.label = this.add.bitmapText(310, 100, 'gbfont', '', 24)
