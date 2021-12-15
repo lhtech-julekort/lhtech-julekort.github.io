@@ -33,12 +33,12 @@ module.exports = merge(base, {
             // every file inside src/assets folder
             from: 'src',
             to: 'src'
-           },
-           {
-            from: 'assets/*',
-            to: 'assets/*',
-            context: 'src/'
-        }
+           }
+      //      {
+      //       from: 'assets/*',
+      //       to: 'assets/*',
+      //       context: 'src/'
+      //   }
       ]
       }),
    ],
