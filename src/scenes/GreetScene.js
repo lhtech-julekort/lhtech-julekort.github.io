@@ -13,22 +13,23 @@ export default class GreetScene extends Phaser.Scene {
    create() {
       this.label = this.add.bitmapText(310, 100, 'gbfont', '', 24)
       this.typewriteText('This message is brought to you by:')
-      this.btn = this.add.sprite(600, 600, 'legoBtn-anim')
+      // this.btn = this.add.sprite(600, 600, 'legoBtn-anim')
       
-      this.anims.create( {
-         key: "legoBtn-anim",
-         frames: this.anims.generateFrameNumbers('legoBtn-anim', {start: 0, end: 3}),
-         frameRate: 15,
-         repeat: 0
-      });
       
-      this.btn.setInteractive()
-      this.btn.on(Phaser.Input.Events.GAMEOBJECT_POINTER_DOWN, () => {
-         this.btn.play('legoBtn-anim')
-         this.btn.on('animationcomplete', () => {
-            this.cameras.main.fadeOut(2000, 0, 0, 0)
-         })
-      })
+      // this.anims.create( {
+      //    key: "legoBtn-anim",
+      //    frames: this.anims.generateFrameNumbers('legoBtn-anim', {start: 0, end: 3}),
+      //    frameRate: 15,
+      //    repeat: 0
+      // });
+      
+   //    this.btn.setInteractive()
+   //    this.btn.on(Phaser.Input.Events.GAMEOBJECT_POINTER_DOWN, () => {
+   //       this.btn.play('legoBtn-anim')
+   //       this.btn.on('animationcomplete', () => {
+   //          this.cameras.main.fadeOut(2000, 0, 0, 0)
+   //       })
+   //    })
 
       this.cameras.main.once(Phaser.Cameras.Scene2D.Events.FADE_OUT_COMPLETE, (cam, effect) => {
          this.scene.start('scene-two')
@@ -50,6 +51,7 @@ export default class GreetScene extends Phaser.Scene {
             ++i
             if(i >= length) {
                this.showLogo('logoTech')
+               
             }
          },
          repeat: length -1,
@@ -61,17 +63,33 @@ export default class GreetScene extends Phaser.Scene {
          this.time.addEvent({
             delay: 900,
             callback: () => {
-               this.add.image(600, 300, imgKey).setScale(1.5)
+               this.add.image(600, 350, imgKey).setScale(1.5)
+               this.showButtonAndText('Click the brick to proceed', 'legoBtn-anim')
             },
          })
       }
 
-      showButtonAndText() {
+      showButtonAndText(text, animKey) {   //før: no param
          this.time.addEvent({
-            delay: 900,
+            delay: 1400,
             callback: () => {
-               this.add.text(600, 550, 'Click the button to proceed')
-               this.add.sprite(600, 600, 'legoBtn-anim')
+               this.add.bitmapText(440, 730, 'gbfont', text, 16)   //click the button to proceed   this.label = this.add.bitmapText(310, 100, 'gbfont', '', 24)
+               this.btn = this.add.sprite(600, 650, animKey) //før: 'legoBtn-anim'
+
+               this.anims.create( {
+                  key: animKey,
+                  frames: this.anims.generateFrameNumbers(animKey, {start: 0, end: 3}),
+                  frameRate: 15,
+                  repeat: 0
+               });
+               
+               this.btn.setInteractive()
+               this.btn.on(Phaser.Input.Events.GAMEOBJECT_POINTER_DOWN, () => {
+                  this.btn.play(animKey)
+                  this.btn.on('animationcomplete', () => {
+                     this.cameras.main.fadeOut(2000, 0, 0, 0)
+                  })
+               })
             }
          })
       }
